@@ -159,6 +159,27 @@ El frontend estará corriendo en `http://localhost:5173`
 
 Abre tu navegador y visita `http://localhost:5173`
 
+### Paso 5: Explorar la Documentación de la API (Swagger)
+
+Visita: **http://localhost:4000/api-docs**
+
+La documentación Swagger/OpenAPI incluye:
+- 📖 Descripción detallada de cada endpoint
+- 🧪 Interfaz interactiva para probar los endpoints directamente desde el navegador
+- 📋 Esquemas completos de request y response
+- 🔐 Ejemplos de autenticación con JWT
+- 💡 Casos de uso y ejemplos documentados
+- 📱 Headers de telemetría requeridos
+
+**¿Cómo usar Swagger UI?**
+1. Abre http://localhost:4000/api-docs
+2. Explora los endpoints organizados por tags (Authentication, Resources, Security)
+3. Haz clic en "Try it out" para probar cualquier endpoint
+4. Para endpoints protegidos, primero haz login en `/auth/login` para obtener un token
+5. Copia el token y haz clic en el botón "Authorize" (🔒) en la parte superior
+6. Pega el token (sin el prefijo "Bearer") y haz clic en "Authorize"
+7. Ahora puedes probar todos los endpoints protegidos
+
 ### Credenciales de Prueba
 
 **Usuario Regular:**

@@ -45,7 +45,7 @@ show_header() {
     local icon="$2"
     echo ""
     echo -e "${CYAN}╔═══════════════════════════════════════════════════════════════════════════╗${NC}"
-    echo -e "${CYAN}║${NC} ${icon} ${WHITE}${title}${NC}"
+    echo -e "${CYAN}║${NC} ${icon} ${WHITE}${title}${NC}"                                       ║
     echo -e "${CYAN}╚═══════════════════════════════════════════════════════════════════════════╝${NC}"
     echo ""
 }
@@ -91,7 +91,7 @@ show_command() {
 
 # Función para pausa dramática
 pause() {
-    local seconds=${1:-3}
+    local seconds=${1:-5}
     sleep $seconds
 }
 
@@ -162,8 +162,8 @@ show_server_log "INFO" "Token: ${TOKEN:0:30}..."
 
 echo ""
 echo -e "${GREEN}╔════════════════════════════════════════════════════════════════════╗${NC}"
-echo -e "${GREEN}║ ${ICON_SUCCESS} AUTENTICACIÓN EXITOSA                                           ║${NC}"
-echo -e "${GREEN}║ Usuario: user@example.com | Rol: user | MFA: ✓                    ║${NC}"
+echo -e "${GREEN}║ ${ICON_SUCCESS} AUTENTICACIÓN EXITOSA                              ║${NC}"
+echo -e "${GREEN}║ Usuario: user@example.com | Rol: user | MFA: ✓                     ║${NC}"
 echo -e "${GREEN}╚════════════════════════════════════════════════════════════════════╝${NC}"
 
 pause 4
@@ -219,8 +219,8 @@ show_server_log "INFO" "Enviando recurso al cliente..."
 
 echo ""
 echo -e "${GREEN}╔════════════════════════════════════════════════════════════════════╗${NC}"
-echo -e "${GREEN}║ ${ICON_ALLOW} ACCESO PERMITIDO                                                ║${NC}"
-echo -e "${GREEN}║ Todas las verificaciones de seguridad pasaron exitosamente        ║${NC}"
+echo -e "${GREEN}║ ${ICON_ALLOW} ACCESO PERMITIDO                                     ║${NC}"
+echo -e "${GREEN}║ Todas las verificaciones de seguridad pasaron exitosamente         ║${NC}"
 echo -e "${GREEN}╚════════════════════════════════════════════════════════════════════╝${NC}"
 
 pause 4
@@ -271,9 +271,9 @@ show_server_log "INFO" "Respondiendo 403 Forbidden"
 
 echo ""
 echo -e "${RED}╔════════════════════════════════════════════════════════════════════╗${NC}"
-echo -e "${RED}║ ${ICON_DENY} ACCESO DENEGADO                                                 ║${NC}"
-echo -e "${RED}║ El dispositivo no cumple con las políticas de seguridad           ║${NC}"
-echo -e "${RED}║ Acción requerida: Actualizar antivirus y parches de seguridad     ║${NC}"
+echo -e "${RED}║ ${ICON_DENY} ACCESO DENEGADO                                       ║${NC}"
+echo -e "${RED}║ El dispositivo no cumple con las políticas de seguridad            ║${NC}"
+echo -e "${RED}║ Acción requerida: Actualizar antivirus y parches de seguridad      ║${NC}"
 echo -e "${RED}╚════════════════════════════════════════════════════════════════════╝${NC}"
 
 pause 4
@@ -321,9 +321,9 @@ show_server_log "INFO" "Respondiendo 403 Forbidden"
 
 echo ""
 echo -e "${RED}╔════════════════════════════════════════════════════════════════════╗${NC}"
-echo -e "${RED}║ ${ICON_DENY} ACCESO DENEGADO                                                 ║${NC}"
-echo -e "${RED}║ Sistema operativo no cumple con políticas corporativas            ║${NC}"
-echo -e "${RED}║ Solo dispositivos corporativos aprobados pueden acceder           ║${NC}"
+echo -e "${RED}║ ${ICON_DENY} ACCESO DENEGADO                                       ║${NC}"
+echo -e "${RED}║ Sistema operativo no cumple con políticas corporativas             ║${NC}"
+echo -e "${RED}║ Solo dispositivos corporativos aprobados pueden acceder            ║${NC}"
 echo -e "${RED}╚════════════════════════════════════════════════════════════════════╝${NC}"
 
 pause 4
@@ -367,8 +367,8 @@ show_server_log "SECURITY" "Claims: role=admin, mfaVerified=true"
 
 echo ""
 echo -e "${PURPLE}╔════════════════════════════════════════════════════════════════════╗${NC}"
-echo -e "${PURPLE}║ ${ICON_SUCCESS} ADMINISTRADOR AUTENTICADO                                       ║${NC}"
-echo -e "${PURPLE}║ Usuario: admin@example.com | Rol: ADMIN | MFA: ✓                  ║${NC}"
+echo -e "${PURPLE}║ ${ICON_SUCCESS} ADMINISTRADOR AUTENTICADO                          ║${NC}"
+echo -e "${PURPLE}║ Usuario: admin@example.com | Rol: ADMIN | MFA: ✓                   ║${NC}"
 echo -e "${PURPLE}╚════════════════════════════════════════════════════════════════════╝${NC}"
 
 pause 4
@@ -425,9 +425,9 @@ show_server_log "INFO" "Enviando recurso administrativo al cliente..."
 
 echo ""
 echo -e "${PURPLE}╔════════════════════════════════════════════════════════════════════╗${NC}"
-echo -e "${PURPLE}║ ${ICON_ALLOW} ACCESO ADMINISTRATIVO PERMITIDO                                 ║${NC}"
-echo -e "${PURPLE}║ Usuario: admin@example.com | Recurso: /resource/admin             ║${NC}"
-echo -e "${PURPLE}║ Todas las verificaciones de seguridad pasaron exitosamente        ║${NC}"
+echo -e "${PURPLE}║ ${ICON_ALLOW} ACCESO ADMINISTRATIVO PERMITIDO                      ║${NC}"
+echo -e "${PURPLE}║ Usuario: admin@example.com | Recurso: /resource/admin              ║${NC}"
+echo -e "${PURPLE}║ Todas las verificaciones de seguridad pasaron exitosamente         ║${NC}"
 echo -e "${PURPLE}╚════════════════════════════════════════════════════════════════════╝${NC}"
 
 pause 4
@@ -489,9 +489,9 @@ show_server_log "SECURITY" "Evento de seguridad registrado en audit log"
 
 echo ""
 echo -e "${RED}╔════════════════════════════════════════════════════════════════════╗${NC}"
-echo -e "${RED}║ ${ICON_DENY} ACCESO DENEGADO - PRIVILEGIOS INSUFICIENTES                     ║${NC}"
-echo -e "${RED}║ Usuario 'user' intentó acceder a recurso que requiere rol 'admin' ║${NC}"
-echo -e "${RED}║ Este evento ha sido registrado para auditoría de seguridad        ║${NC}"
+echo -e "${RED}║ ${ICON_DENY} ACCESO DENEGADO - PRIVILEGIOS INSUFICIENTES           ║${NC}"
+echo -e "${RED}║ Usuario 'user' intentó acceder a recurso que requiere rol 'admin'  ║${NC}"
+echo -e "${RED}║ Este evento ha sido registrado para auditoría de seguridad         ║${NC}"
 echo -e "${RED}╚════════════════════════════════════════════════════════════════════╝${NC}"
 
 pause 4
@@ -532,9 +532,9 @@ show_server_log "INFO" "Respondiendo 401 Unauthorized con solicitud de MFA"
 
 echo ""
 echo -e "${YELLOW}╔════════════════════════════════════════════════════════════════════╗${NC}"
-echo -e "${YELLOW}║ ${ICON_WARNING} STEP-UP AUTHENTICATION REQUERIDO                                ║${NC}"
-echo -e "${YELLOW}║ Las credenciales son válidas pero falta el segundo factor         ║${NC}"
-echo -e "${YELLOW}║ Acción requerida: Completar MFA (TOTP, SMS o biometría)           ║${NC}"
+echo -e "${YELLOW}║ ${ICON_WARNING} STEP-UP AUTHENTICATION REQUERIDO                   ║${NC}"
+echo -e "${YELLOW}║ Las credenciales son válidas pero falta el segundo factor          ║${NC}"
+echo -e "${YELLOW}║ Acción requerida: Completar MFA (TOTP, SMS o biometría)            ║${NC}"
 echo -e "${YELLOW}╚════════════════════════════════════════════════════════════════════╝${NC}"
 
 pause 4
@@ -557,16 +557,16 @@ echo -e "${RED}${ICON_DENY} Escenario 7:${NC} Intento de escalada de privilegios
 echo -e "${YELLOW}${ICON_WARNING} Escenario 8:${NC} Autenticación sin MFA                    ${YELLOW}[STEP-UP]${NC}"
 
 echo ""
-echo -e "${CYAN}╔════════════════════════════════════════════════════════════════════╗${NC}"
-echo -e "${CYAN}║ ${ICON_SECURITY} PRINCIPIOS ZERO TRUST DEMOSTRADOS                              ║${NC}"
-echo -e "${CYAN}╠════════════════════════════════════════════════════════════════════╣${NC}"
-echo -e "${CYAN}║${NC} ${ICON_CHECK} Verificación continua en cada petición                        ${CYAN}║${NC}"
-echo -e "${CYAN}║${NC} ${ICON_CHECK} Evaluación de contexto y telemetría del dispositivo          ${CYAN}║${NC}"
-echo -e "${CYAN}║${NC} ${ICON_CHECK} Control de acceso basado en roles (RBAC)                     ${CYAN}║${NC}"
-echo -e "${CYAN}║${NC} ${ICON_CHECK} Políticas centralizadas aplicadas consistentemente           ${CYAN}║${NC}"
-echo -e "${CYAN}║${NC} ${ICON_CHECK} Menor privilegio - solo acceso necesario                     ${CYAN}║${NC}"
-echo -e "${CYAN}║${NC} ${ICON_CHECK} Sin confianza implícita - todo se verifica                   ${CYAN}║${NC}"
-echo -e "${CYAN}╚════════════════════════════════════════════════════════════════════╝${NC}"
+echo -e "${CYAN}╔════════════════════════════════════════════════════════════════════════════════════╗${NC}"
+echo -e "${CYAN}║ ${ICON_SECURITY} PRINCIPIOS ZERO TRUST DEMOSTRADOS                                 ║${NC}"
+echo -e "${CYAN}╠════════════════════════════════════════════════════════════════════════════════════╣${NC}"
+echo -e "${CYAN}║${NC} ${ICON_CHECK} Verificación continua en cada petición                   ${CYAN}║${NC}"
+echo -e "${CYAN}║${NC} ${ICON_CHECK} Evaluación de contexto y telemetría del dispositivo      ${CYAN}║${NC}"
+echo -e "${CYAN}║${NC} ${ICON_CHECK} Control de acceso basado en roles (RBAC)                 ${CYAN}║${NC}"
+echo -e "${CYAN}║${NC} ${ICON_CHECK} Políticas centralizadas aplicadas consistentemente       ${CYAN}║${NC}"
+echo -e "${CYAN}║${NC} ${ICON_CHECK} Menor privilegio - solo acceso necesario                 ${CYAN}║${NC}"
+echo -e "${CYAN}║${NC} ${ICON_CHECK} Sin confianza implícita - todo se verifica               ${CYAN}║${NC}"
+echo -e "${CYAN}╚════════════════════════════════════════════════════════════════════════════════════╝${NC}"
 
 echo ""
 show_server_log "INFO" "${ICON_INFO} Demo completado. Sistema Zero Trust operando normalmente"

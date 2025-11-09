@@ -40,7 +40,16 @@ Deberías ver:
 
 Visita: **http://localhost:5173/**
 
-### 5️⃣ Credenciales de prueba
+### 5️⃣ Explorar la Documentación Swagger
+
+Visita: **http://localhost:4000/api-docs**
+
+Aquí puedes:
+- 📖 Ver documentación detallada de todos los endpoints
+- 🧪 Probar los endpoints interactivamente
+- 🔐 Autenticarte y probar con tokens reales
+
+### 6️⃣ Credenciales de prueba
 
 **Usuario Regular:**
 - Email: `user@example.com`

@@ -14,6 +14,8 @@ El proyecto de demostración Zero Trust ha sido creado exitosamente con todos lo
 ✅ **trustEngine.js** - Motor de decisión Zero Trust
 ✅ **routes/resource.js** - Endpoints protegidos (/public, /secure, /admin, /sensitive)
 ✅ **data/users.json** - Base de datos de usuarios
+✅ **swagger.js** - Configuración de documentación OpenAPI/Swagger
+✅ **Swagger UI** - Documentación interactiva en /api-docs
 
 ### Frontend (React + Vite)
 ✅ **Login.jsx** - Pantalla de autenticación con MFA
@@ -262,7 +264,29 @@ cd backend && npm run dev
 
 - **Frontend:** http://localhost:5173
 - **Backend API:** http://localhost:4000
-- **API Docs:** http://localhost:4000/ (GET para ver endpoints)
+- **API Docs (Swagger):** http://localhost:4000/api-docs
+- **API Info:** http://localhost:4000/ (GET para ver endpoints)
+
+---
+
+## 📖 Documentación Swagger/OpenAPI
+
+El proyecto incluye documentación interactiva completa:
+
+**Características:**
+- 📋 Todos los endpoints documentados con ejemplos
+- 🧪 Interfaz "Try it out" para probar en vivo
+- 🔐 Autenticación integrada (botón Authorize)
+- 📱 Documentación de headers de telemetría
+- 💡 Esquemas de request y response
+- ⚠️ Códigos de error y sus significados
+
+**Cómo usar:**
+1. Abre http://localhost:4000/api-docs
+2. Explora los endpoints por categorías
+3. Usa `/auth/login` para obtener un token
+4. Haz clic en "Authorize" y pega el token
+5. Prueba cualquier endpoint protegido
 
 ---
 
@@ -281,13 +305,14 @@ cd backend && npm run dev
 ## 🎯 Próximos Pasos Sugeridos
 
 1. ✅ **Ejecutar demo interactivo:** `./demo-logs.sh`
-2. ✅ Explorar el frontend en el navegador
-2. ✅ Probar diferentes health scores
-3. ✅ Intentar acceder sin MFA
-4. ✅ Probar acceso admin con usuario regular
-5. ✅ Ejecutar el script de testing `./test-api.sh`
-6. ✅ Leer el README.md completo
-7. ✅ Experimentar con las políticas en `trustEngine.js`
+2. ✅ **Explorar Swagger UI:** http://localhost:4000/api-docs
+3. ✅ Explorar el frontend en el navegador
+4. ✅ Probar diferentes health scores
+5. ✅ Intentar acceder sin MFA
+6. ✅ Probar acceso admin con usuario regular
+7. ✅ Ejecutar el script de testing `./test-api.sh`
+8. ✅ Leer el README.md completo
+9. ✅ Experimentar con las políticas en `trustEngine.js`
 
 ---
 

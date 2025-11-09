@@ -10,6 +10,8 @@
 
 import express from 'express';
 import cors from 'cors';
+import swaggerUi from 'swagger-ui-express';
+import { swaggerSpec } from './swagger.js';
 import { 
   validateCredentials, 
   validateMFA, 
@@ -25,6 +27,12 @@ const PORT = 4000;
 // Middleware
 app.use(cors()); // Permitir peticiones desde el frontend
 app.use(express.json());
+
+// Swagger UI
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec, {
+  customCss: '.swagger-ui .topbar { display: none }',
+  customSiteTitle: 'Zero Trust API Docs'
+}));
 
 // Logger de peticiones
 app.use((req, res, next) => {
@@ -42,14 +50,69 @@ app.use((req, res, next) => {
 // ==========================================
 
 /**
- * POST /auth/login
- * Endpoint de autenticación con MFA
- * 
- * Body: {
- *   email: string,
- *   password: string,
- *   mfa: boolean  // Simula si el usuario completó MFA
- * }
+ * @swagger
+ * /auth/login:
+ *   post:
+ *     summary: Autenticación de usuario con MFA
+ *     description: |
+ *       Autentica un usuario con email, password y Multi-Factor Authentication (MFA).
+ *       Si las credenciales son válidas y el MFA es correcto, retorna un token JWT.
+ *       El token expira en 5 minutos y debe ser usado en el header Authorization de peticiones subsiguientes.
+ *     tags: [Authentication]
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             $ref: '#/components/schemas/LoginRequest'
+ *           examples:
+ *             usuario_regular:
+ *               summary: Usuario regular con MFA
+ *               value:
+ *                 email: user@example.com
+ *                 password: password
+ *                 mfa: true
+ *             administrador:
+ *               summary: Administrador con MFA
+ *               value:
+ *                 email: admin@example.com
+ *                 password: admin123
+ *                 mfa: true
+ *             sin_mfa:
+ *               summary: Usuario sin completar MFA
+ *               value:
+ *                 email: user@example.com
+ *                 password: password
+ *                 mfa: false
+ *     responses:
+ *       200:
+ *         description: Autenticación exitosa
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/LoginSuccessResponse'
+ *       401:
+ *         description: Credenciales inválidas o MFA requerido
+ *         content:
+ *           application/json:
+ *             schema:
+ *               oneOf:
+ *                 - $ref: '#/components/schemas/DenyResponse'
+ *                 - $ref: '#/components/schemas/StepUpResponse'
+ *             examples:
+ *               credenciales_invalidas:
+ *                 summary: Credenciales incorrectas
+ *                 value:
+ *                   decision: deny
+ *                   reason: Invalid email or password
+ *                   message: Authentication failed
+ *               mfa_requerido:
+ *                 summary: MFA no proporcionado
+ *                 value:
+ *                   decision: step-up
+ *                   reason: Multi-factor authentication required
+ *                   message: Please complete MFA to continue
+ *                   mfaRequired: true
  */
 app.post('/auth/login', (req, res) => {
   const { email, password, mfa } = req.body;
@@ -100,10 +163,52 @@ app.post('/auth/login', (req, res) => {
 });
 
 /**
- * POST /auth/validate
- * Valida un token JWT existente
- * 
- * Body: { token: string }
+ * @swagger
+ * /auth/validate:
+ *   post:
+ *     summary: Validar un token JWT existente
+ *     description: Verifica si un token JWT es válido y no ha expirado, retornando información del usuario si es válido.
+ *     tags: [Authentication]
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             required:
+ *               - token
+ *             properties:
+ *               token:
+ *                 type: string
+ *                 description: Token JWT a validar
+ *                 example: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...
+ *     responses:
+ *       200:
+ *         description: Token válido
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 valid:
+ *                   type: boolean
+ *                   example: true
+ *                 user:
+ *                   type: object
+ *                   properties:
+ *                     email:
+ *                       type: string
+ *                       example: user@example.com
+ *                     role:
+ *                       type: string
+ *                       example: user
+ *                     mfaVerified:
+ *                       type: boolean
+ *                       example: true
+ *       400:
+ *         description: Token no proporcionado
+ *       401:
+ *         description: Token inválido o expirado
  */
 app.post('/auth/validate', (req, res) => {
   const { token } = req.body;
@@ -134,8 +239,21 @@ app.post('/auth/validate', (req, res) => {
 });
 
 /**
- * GET /auth/policies
- * Retorna las políticas de seguridad actuales
+ * @swagger
+ * /auth/policies:
+ *   get:
+ *     summary: Obtener políticas de seguridad activas
+ *     description: |
+ *       Retorna las políticas de seguridad que el Trust Engine usa para evaluar el acceso.
+ *       Incluye sistemas operativos permitidos, health score mínimo, requisitos de MFA, etc.
+ *     tags: [Security]
+ *     responses:
+ *       200:
+ *         description: Políticas de seguridad
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/SecurityPolicies'
  */
 app.get('/auth/policies', (req, res) => {
   res.json({
@@ -150,12 +268,41 @@ app.get('/auth/policies', (req, res) => {
 
 app.use('/resource', resourceRoutes);
 
-// Ruta raíz - Información del API
+/**
+ * @swagger
+ * /:
+ *   get:
+ *     summary: Información general de la API
+ *     description: Retorna información sobre la API, endpoints disponibles y headers requeridos.
+ *     tags: [Security]
+ *     responses:
+ *       200:
+ *         description: Información de la API
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 name:
+ *                   type: string
+ *                 version:
+ *                   type: string
+ *                 description:
+ *                   type: string
+ *                 documentation:
+ *                   type: string
+ *                   example: http://localhost:4000/api-docs
+ *                 endpoints:
+ *                   type: object
+ *                 requiredHeaders:
+ *                   type: object
+ */
 app.get('/', (req, res) => {
   res.json({
     name: 'Zero Trust Demo API',
     version: '1.0.0',
     description: 'Demostración práctica del modelo Zero Trust',
+    documentation: `http://localhost:${PORT}/api-docs`,
     endpoints: {
       authentication: [
         'POST /auth/login - Authenticate with credentials and MFA',
@@ -201,6 +348,7 @@ app.listen(PORT, () => {
   console.log('║     Zero Trust Demo Backend Started        ║');
   console.log('╚════════════════════════════════════════════╝');
   console.log(`\n🚀 Server running on http://localhost:${PORT}`);
+  console.log(`\n📖 API Documentation: http://localhost:${PORT}/api-docs`);
   console.log('\n📚 Available endpoints:');
   console.log('   POST   /auth/login');
   console.log('   POST   /auth/validate');
