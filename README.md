@@ -2,6 +2,17 @@
 
 Una implementación educativa y funcional del modelo **Zero Trust** basada en los principios de Loftus, que demuestra cómo aplicar el concepto "nunca confíes, siempre verifica" en una aplicación web moderna.
 
+---
+
+## 🎥 Recursos Visuales
+
+**[ Ver Videos en Loom](https://www.loom.com/share/folder/7749a200081d4de7a0149bd9064660ee)**
+
+**[Abrir Diagramas en Excalidraw](https://excalidraw.com/#json=Nc2kmNQrNADwG91m_N49o,IzSF5Ek_0NokXJZYdpKIgQ)**
+
+
+---
+
 ## 📋 Tabla de Contenidos
 
 - [Introducción](#introducción)
