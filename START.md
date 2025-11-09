@@ -52,6 +52,17 @@ Visita: **http://localhost:5173/**
 - Password: `admin123`
 - ✅ Marcar el checkbox de MFA
 
+## 🎬 Demo Interactivo con Logs
+
+Para ver una demostración completa con logs en tiempo real:
+
+```bash
+# Asegúrate de que el backend esté corriendo
+./demo-logs.sh
+```
+
+Este script muestra 8 escenarios diferentes con logs detallados y colores.
+
 ## 🧪 Probar con cURL
 
 En una tercera terminal, puedes probar los endpoints:

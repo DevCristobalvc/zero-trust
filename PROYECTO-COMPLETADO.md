@@ -23,16 +23,43 @@ El proyecto de demostración Zero Trust ha sido creado exitosamente con todos lo
 ✅ **App.jsx** - Componente principal con routing
 
 ### Documentación
-✅ **README.md** - Documentación completa con:
-  - Explicación de Zero Trust
-  - Diagramas Mermaid (flujo, componentes, secuencia)
-  - Ejemplos de uso con cURL
+✅ **README.md** completo con:
+  - 3 diagramas Mermaid (flujo, componentes, secuencia)
+  - 12 ejemplos de cURL
   - Casos de uso detallados
-  - Guía de instalación y ejecución
+  - Guía de instalación
   - Extensiones futuras
+✅ **START.md** - Guía rápida
+✅ **test-api.sh** - Script de testing automatizado
+✅ **demo-logs.sh** - Demo interactivo con logs en tiempo real
+✅ **PROYECTO-COMPLETADO.md** - Resumen ejecutivo
 
-✅ **START.md** - Guía rápida de inicio
-✅ **test-api.sh** - Script automatizado de testing
+---
+
+## 🎬 Demo Interactivo
+
+Para ver el sistema Zero Trust en acción con logs detallados:
+
+```bash
+# Terminal 1: Iniciar backend
+cd backend && npm run dev
+
+# Terminal 2: Ejecutar demo interactivo
+./demo-logs.sh
+```
+
+El script `demo-logs.sh` muestra:
+- 🎭 8 escenarios diferentes de autenticación y acceso
+- 📊 Logs simulados del servidor con colores
+- ⏱️ Pausas de 1-3 segundos entre operaciones
+- 🔍 Explicación detallada de cada decisión del Trust Engine
+- ✅ Casos de éxito (allow)
+- ❌ Casos de denegación (deny)
+- 🔐 Casos de step-up (MFA requerido)
+
+---
+
+## 🚀 Para Ejecutar
 
 ---
 
@@ -243,6 +270,7 @@ cd backend && npm run dev
 
 - **README.md** - Documentación completa
 - **START.md** - Guía rápida
+- **demo-logs.sh** - Demo interactivo con logs (¡RECOMENDADO!)
 - **test-api.sh** - Tests automatizados
 - **backend/trustEngine.js** - Lógica Zero Trust
 - **backend/auth.js** - Autenticación JWT
@@ -252,7 +280,8 @@ cd backend && npm run dev
 
 ## 🎯 Próximos Pasos Sugeridos
 
-1. ✅ Explorar el frontend en el navegador
+1. ✅ **Ejecutar demo interactivo:** `./demo-logs.sh`
+2. ✅ Explorar el frontend en el navegador
 2. ✅ Probar diferentes health scores
 3. ✅ Intentar acceder sin MFA
 4. ✅ Probar acceso admin con usuario regular

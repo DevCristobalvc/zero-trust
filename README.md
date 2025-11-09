@@ -527,6 +527,25 @@ curl http://localhost:4000/auth/policies
 
 ## 🧪 Testing con cURL
 
+### Demo Interactivo con Logs en Tiempo Real
+
+Para ver una demostración visual y educativa del sistema Zero Trust en acción:
+
+```bash
+# Asegúrate de que el backend esté corriendo primero
+cd backend && npm run dev
+
+# En otra terminal, ejecuta el demo
+./demo-logs.sh
+```
+
+Este script muestra:
+- 🎬 8 escenarios diferentes de autenticación y acceso
+- 📊 Logs del servidor en tiempo real con colores
+- ⏱️ Pausas para poder seguir el flujo
+- 🔍 Explicaciones de cada decisión del Trust Engine
+- ✅ Casos de éxito, denegación y step-up
+
 ### Script de Testing Completo
 
 Crea un archivo `test-zero-trust.sh`:
